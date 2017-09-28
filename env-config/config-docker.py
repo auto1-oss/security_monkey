@@ -23,7 +23,7 @@ def env_to_bool(input):
         defaults to True
     """
     if isinstance(input, str):
-        if input == 'False':
+        if input in ('False', 'false'):
             return False
         else:
             return True
