@@ -135,7 +135,9 @@ CORE_THREADS = 25
 MAX_THREADS = 30
 
 # SSO SETTINGS:
-ACTIVE_PROVIDERS = [ os.getenv('SECURITY_MONKEY_ACTIVE_PROVIDERS', '') ] # "ping", "google" or "onelogin"
+ACTIVE_PROVIDERS = [] # "ping", "google" or "onelogin"
+if os.getenv('SECURITY_MONKEY_ACTIVE_PROVIDERS'):
+    ACTIVE_PROVIDERS = [ os.getenv('SECURITY_MONKEY_ACTIVE_PROVIDERS') ]
 
 PING_NAME = ''  # Use to override the Ping name in the UI.
 PING_REDIRECT_URI = "{BASE}api/1/auth/ping".format(BASE=BASE_URL)
