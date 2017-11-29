@@ -189,18 +189,18 @@ class Auditor(object):
 
     def load_policies(self, item, policy_keys):
         """For a given item, return a list of all resource policies.
-        
-        Most items only have a single resource policy, typically found 
+
+        Most items only have a single resource policy, typically found
         inside the config with the key, "Policy".
-        
+
         Some technologies have multiple resource policies.  A lambda function
         is an example of an item with multiple resource policies.
-        
+
         The lambda function auditor can define a list of `policy_keys`.  Each
         item in this list is the dpath to one of the resource policies.
-        
+
         The `policy_keys` defaults to ['Policy'] unless overriden by a subclass.
-        
+
         Returns:
             list of Policy objects
         """
@@ -442,17 +442,17 @@ class Auditor(object):
 
     def inspect_entity(self, entity, item):
         """A entity can represent an:
-        
+
         - ARN
         - Account Number
         - UserID
         - CIDR
         - VPC
         - VPCE
-        
+
         Determine if the who is in our current account. Add the associated account
         to the entity.
-        
+
         Return:
             'SAME' - The who is in our same account.
             'FRIENDLY' - The who is in an account Security Monkey knows about.
@@ -762,7 +762,7 @@ class Auditor(object):
                     item.confirmed_new_issues.append(new_issue)
                     item.db_item.issues.append(new_issue)
                     continue
-                
+
                 existing_issue = existing_issues[new_issue_key]
                 if existing_issue.fixed:
                     # regression
@@ -955,7 +955,9 @@ class Auditor(object):
                 link_score = score or matching_issue.score
                 issue = self.add_issue(link_score, issue_message, item)
 
-        issue.sub_items.append(sub_item)
+        if issue is not None:
+            issue.sub_items.append(sub_item)
+
         return issue
 
     def link_to_support_item(self, score, issue_message, item, sub_item, issue=None):
