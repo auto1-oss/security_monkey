@@ -81,6 +81,8 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
 # print postgres
 # print SQLALCHEMY_DATABASE_URI
 
+AWS_GOVCLOUD = False
+
 SQLALCHEMY_POOL_SIZE = 50
 SQLALCHEMY_MAX_OVERFLOW = 15
 ENVIRONMENT = 'ec2'
